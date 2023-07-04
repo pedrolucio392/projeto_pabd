@@ -13,4 +13,4 @@ if selectbox == 'Inserir':
 if selectbox == 'Consultar':
     select.consultar()
 
-
+    
