@@ -19,3 +19,10 @@ def selecionar():
     for row in data:
         rows.append(row)
     return rows
+
+#função para  atualizar 
+def atualizar_cliente(cpf, nome, endereco, telefone):
+    data = db.cur.execute("""
+            UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
+            """ % (cpf, nome, endereco, telefone)
+    )

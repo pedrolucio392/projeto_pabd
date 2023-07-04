@@ -17,7 +17,6 @@ def inserir_cliente():
             cliente.incluir(input_cpf, input_nome, input_endereco, input_telefone)
             st.success('Cliente incluido com sucesso')
 
-
 def inserir_venda():
     st.title('Inserir Venda')
     
@@ -48,8 +47,6 @@ def inserir_supermercado():
     if buttom_submit:
         cliente.incluir(input_cnpj, input_nome_supermercado, input_nome_proprietario)
         st.success('Dados do Supermercado incluido com sucesso!')
-
-
 
 def inserir_produto():
     st.title('Inserir Produto')
