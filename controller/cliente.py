@@ -10,7 +10,7 @@ def incluir_cliente(cpf, nome, endereco, telefone): #INACABADO
     db.con.commit()
     
 #função para inserir registro no banco de dados
-def selecionar_cliente(): #INACABADO
+def selecionar_cliente(): #INACABADO - PEDRO
     db.cur.execute("""
                    SELECT * FROM public.tb_cliente
                    """)
@@ -21,14 +21,14 @@ def selecionar_cliente(): #INACABADO
     return rows
 
 #função para  atualizar 
-def atualizar_cliente(cpf, nome, endereco, telefone): #INACABADO
+def atualizar_cliente(cpf, nome, endereco, telefone): #INACABADO - JOÃO E JEAN
     data = db.cur.execute("""
             UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
             """ % (cpf, nome, endereco, telefone)
     )
 
 #função para deletar
-def deletar_cliente(cpf, nome, endereco, telefone): #INACABADO
+def deletar_cliente(cpf, nome, endereco, telefone): #INACABADO - ANA
     data = db.cur.execute("""
             UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
             """ % (cpf, nome, endereco, telefone)

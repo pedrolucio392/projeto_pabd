@@ -10,7 +10,7 @@ def incluir_produto(cpf, nome, endereco, telefone): #INACABADO
     db.con.commit()
     
 #função para inserir registro no banco de dados
-def selecionar_produto(): #INACABADO
+def selecionar_produto(): #INACABADO - PEDRO
     db.cur.execute("""
                    SELECT * FROM public.tb_cliente
                    """)
@@ -21,14 +21,14 @@ def selecionar_produto(): #INACABADO
     return rows
 
 #função para  atualizar 
-def atualizar_produto(cpf, nome, endereco, telefone): #INACABADO
+def atualizar_produto(cpf, nome, endereco, telefone): #INACABADO - JOÃO E JEAN
     data = db.cur.execute("""
             UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
             """ % (cpf, nome, endereco, telefone)
     )
 
 #função para deletar
-def deletar_produto(cpf, nome, endereco, telefone): #INACABADO
+def deletar_produto(cpf, nome, endereco, telefone): #INACABADO - ANA
     data = db.cur.execute("""
             UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
             """ % (cpf, nome, endereco, telefone)
