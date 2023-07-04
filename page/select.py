@@ -1,9 +1,8 @@
 import streamlit as st
-
 import controller.cliente as cliente
 
 
-def consultar_clientes():
+def consultar_clientes(): #INACABADA
     st.title('Consultar Clientes')
     colunas = st.columns((1,2,1,2))
     campos = ['CPF', 'Nome', 'Endereço', 'Telefone', 'Excluir']
@@ -24,4 +23,12 @@ def consultar_clientes():
         if on_click_excluir:
             continue
             #cliente.excluir(item[0])
+
+def consultar_vendas(): #INACABADA
+    pass
             
+def consultar_supermercados(): #INACABADA
+    pass
+
+def consultar_produtos(): #INACABADA
+    pass

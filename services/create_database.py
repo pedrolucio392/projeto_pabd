@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship, declarative_base, sessionmaker
 from sqlalchemy import *
 
 # Cria uma instância do SQLAlchemy Engine
-engine = create_engine('postgresql://postgres:pabd@localhost/Supermercado_BD_mat')
+engine = create_engine('postgresql://postgres:0509@localhost/Supermercado_BD_mat') # Mudar de acordo com as informações do seu banco
 metadata = MetaData()
 Session = sessionmaker(bind=engine)
 session = Session()
