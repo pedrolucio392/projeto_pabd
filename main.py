@@ -3,42 +3,96 @@ import streamlit as st
 import page.insert as insert
 import page.select as select
 import page.update as update
+import page.delete as delete
 
 #criando a barra lateral do menu
 st.sidebar.title('Menu')
 
-selectbox = st.sidebar.selectbox('Clientes', ['Inserir cliente', 'Consultar clientes'])
-selectbox = st.sidebar.selectbox('Produtos', ['Inserir produto', 'Consultar produtos'])
-selectbox = st.sidebar.selectbox('Supermercados', ['Inserir supermercado', 'Consultar supermercados'])
-selectbox = st.sidebar.selectbox('Vendas', ["Inserir venda", 'Consultar vendas'])
+# Barra lateral inicial
+opcoes_iniciais = ['Inserir', 'Consultar', 'Atualizar', 'Deletar']
+selectbox_inicial = st.sidebar.selectbox('O que deseja?', opcoes_iniciais)
 
 
-if selectbox == 'Inserir cliente':
-    insert.inserir_cliente()
+# selectbox_cliente = st.sidebar.selectbox('Clientes', ['Inserir cliente', 'Consultar clientes', 'Atualizar cliente', 'Deletar cliente'])
+# selectbox_produto = st.sidebar.selectbox('Produtos', ['Inserir produto', 'Consultar produtos', 'Atualizar produto', 'Deletar produto'])
+# selectbox_supermercado = st.sidebar.selectbox('Supermercados', ['Inserir supermercado', 'Consultar supermercados', 'Atualizar supermercado', 'Deletar supermercado'])
+# selectbox_venda = st.sidebar.selectbox('Vendas', ["Inserir venda", 'Consultar vendas', 'Atualizar venda', 'Deletar venda'])
 
-if selectbox == 'Inserir produto':
-    insert.inserir_produto()
+# INSERIR
 
-if selectbox == 'Inserir supermercado':
-    insert.inserir_supermercado()
+if selectbox_inicial == 'Inserir':
+    
+    opcoes_inserir = ['Inserir cliente', 'Inserir produto', 'Inserir supermercado', 'Inserir venda']
+    selectbox_inserir = st.sidebar.selectbox('O que desaja inserir?', opcoes_inserir)
 
-if selectbox == 'Inserir venda':
-    insert.inserir_venda()
+    if selectbox_inserir == 'Inserir cliente':
+        insert.inserir_cliente()
 
-if selectbox == 'Consultar clientes':
-    select.consultar_clientes()
+    if selectbox_inserir == 'Inserir produto':
+        insert.inserir_produto()
 
-if selectbox == 'Consultar produtos':
-    select.consultar()
+    if selectbox_inserir == 'Inserir supermercado':
+        insert.inserir_supermercado()
 
-if selectbox == 'Consultar supermercados':
-    select.consultar()
+    if selectbox_inserir == 'Inserir venda':
+        insert.inserir_venda()
 
-if selectbox == 'Consultar vendas':
-    select.consultar()
+# CONSULTAR
 
-if selectbox == 'Atualizar':
-    update.update()
+if selectbox_inicial == 'Consultar':
+    
+    opcoes_consultar = ['Consultar clientes', 'Consultar produtos', 'Consultar supermercados', 'Consultar vendas']
+    selectbox_consultar = st.sidebar.selectbox('O que desaja consultar?', opcoes_consultar)
+
+    if selectbox_consultar == 'Consultar clientes':
+        select.consultar_clientes()
+
+    if selectbox_consultar == 'Consultar produtos':
+        select.consultar_produtos()
+
+    if selectbox_consultar == 'Consultar supermercados':
+        select.consultar_supermercados()
+
+    if selectbox_consultar == 'Consultar vendas':
+        select.consultar_vendas()
+
+# ATUALIZAR
+
+if selectbox_inicial == 'Atualizar':
+    
+    opcoes_atualizar = ['Atualizar cliente', 'Atualizar produto', 'Atualizar supermercado', 'Atualizar venda']
+    selectbox_atualizar = st.sidebar.selectbox('O que desaja atualizar?', opcoes_atualizar)
+
+    if selectbox_atualizar == 'Atualizar cliente':
+        update.atualizar_cliente()
+
+    if selectbox_atualizar == 'Atualizar produto':
+        update.atualizar_produto()
+
+    if selectbox_atualizar == 'Atualizar supermercado':
+        update.atualizar_supermercado()
+
+    if selectbox_atualizar == 'Atualizar venda':
+        update.atualizar_venda()
+
+# DELETAR
+
+if selectbox_inicial == 'Deletar':
+    
+    opcoes_deletar = ['Deletar cliente', 'Deletar produto', 'Deletar supermercado', 'Deletar venda']
+    selectbox_deletar = st.sidebar.selectbox('O que desaja deletar?', opcoes_deletar)
+
+    if selectbox_deletar == 'Deletar cliente':
+        delete.deletar_cliente()
+
+    if selectbox_deletar == 'Deletar produto':
+        delete.deletar_produto()
+
+    if selectbox_deletar == 'Deletar supermercado':
+        delete.deletar_supermercado()
+
+    if selectbox_deletar == 'Deletar venda':
+        delete.deletar_venda()
 
 
     

@@ -1,8 +1,11 @@
 import streamlit as st
-
 import controller.cliente as cliente
 
-def update():
+# JOÃO E JEAN
+
+def atualizar_cliente(): #INACABADO
+
+
     st.title('Atualizar Cliente')
     
     with st.form(key='insert'):
@@ -16,3 +19,12 @@ def update():
         if buttom_submit:
             cliente.atualizar_cliente(input_cpf, input_nome, input_endereco, input_telefone)
             st.success('Cliente incluido com sucesso')
+
+def atualizar_venda(): #INACABADA
+    pass
+            
+def atualizar_supermercado(): #INACABADA
+    pass
+
+def atualizar_produto(): #INACABADA
+    pass

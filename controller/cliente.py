@@ -2,17 +2,17 @@
 import services.database as db
 
 #função para inserir registro no banco de dados
-def incluir(cpf, nome, endereco, telefone):
+def incluir_cliente(cpf, nome, endereco, telefone): #FINALIZADO
     db.cur.execute("""
-                   INSERT into public.tb_cliente (cpf, nome, endereco, telefone)
+                   INSERT into public.clientes(CPF, NOME, ENDERECO, TELEFONE)
                    VALUES ('%s','%s','%s', '%s')
                    """ % (cpf, nome, endereco, telefone))
     db.con.commit()
     
 #função para inserir registro no banco de dados
-def selecionar():
+def selecionar_cliente(): # FINALIZADO - PEDRO
     db.cur.execute("""
-                   SELECT * FROM public.tb_cliente
+                   SELECT * FROM clientes
                    """)
     data = db.cur.fetchall()
     rows = []
@@ -21,7 +21,14 @@ def selecionar():
     return rows
 
 #função para  atualizar 
-def atualizar_cliente(cpf, nome, endereco, telefone):
+def atualizar_cliente(cpf, nome, endereco, telefone): #INACABADO - JOÃO E JEAN
+    data = db.cur.execute("""
+            UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
+            """ % (cpf, nome, endereco, telefone)
+    )
+
+#função para deletar
+def deletar_cliente(cpf, nome, endereco, telefone): #INACABADO - ANA
     data = db.cur.execute("""
             UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
             """ % (cpf, nome, endereco, telefone)
