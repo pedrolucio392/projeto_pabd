@@ -28,8 +28,8 @@ def atualizar_produto(cpf, nome, endereco, telefone): #INACABADO - JOÃO E JEAN
     )
 
 #função para deletar
-def deletar_produto(cpf, nome, endereco, telefone): #INACABADO - ANA
+def deletar_produto(id_produto): #FINALIZADO - ANA
     data = db.cur.execute("""
-            UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
-            """ % (cpf, nome, endereco, telefone)
+            UPDATE clientes SET id_produto='%s'
+            """ % (id_produto)
     )

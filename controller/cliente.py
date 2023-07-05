@@ -28,8 +28,8 @@ def atualizar_cliente(cpf, nome, endereco, telefone): #INACABADO - JOÃO E JEAN
     )
 
 #função para deletar
-def deletar_cliente(cpf, nome, endereco, telefone): #INACABADO - ANA
+def deletar_cliente(cpf): #FINALIZADO - ANA
     data = db.cur.execute("""
-            UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
-            """ % (cpf, nome, endereco, telefone)
+            UPDATE clientes SET cpf='%s'
+            """ % (cpf)
     )

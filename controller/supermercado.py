@@ -28,8 +28,8 @@ def atualizar_supermercado(cpf, nome, endereco, telefone): #INACABADO - JOÃO E 
     )
 
 #função para deletar
-def deletar_supermercado(cpf, nome, endereco, telefone): #INACABADO - ANA
+def deletar_supermercado(cnpj): #FINALIZADO - ANA
     data = db.cur.execute("""
-            UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
-            """ % (cpf, nome, endereco, telefone)
+            UPDATE clientes SET cnpj='%s'
+            """ % (cnpj)
     )
