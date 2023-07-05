@@ -2,17 +2,17 @@
 import services.database as db
 
 #função para inserir registro no banco de dados
-def incluir_produto(cpf, nome, endereco, telefone): #INACABADO
+def incluir_produto(valor, nome, categoria): #FINALIZADO
     db.cur.execute("""
-                   INSERT into public.tb_cliente (cpf, nome, endereco, telefone)
-                   VALUES ('%s','%s','%s', '%s')
-                   """ % (cpf, nome, endereco, telefone))
+                   INSERT INTO produtos (VALOR, NOME, CATEGORIA) 
+                   VALUES ('%s', '%s', '%s')
+                   """ % (valor, nome, categoria))
     db.con.commit()
     
 #função para inserir registro no banco de dados
-def selecionar_produto(): #INACABADO - PEDRO
+def selecionar_produto(): #FINALIZADO - PEDRO
     db.cur.execute("""
-                   SELECT * FROM public.tb_cliente
+                   SELECT * FROM produtos
                    """)
     data = db.cur.fetchall()
     rows = []
