@@ -2,7 +2,7 @@
 import services.database as db
 
 #função para inserir registro no banco de dados
-def incluir_supermercado(cnpj, nome_supermercado, proprietario): #FINALIZADO
+def inserir_supermercado_db(cnpj, nome_supermercado, proprietario): #FINALIZADO
     db.cur.execute("""
                    INSERT INTO supermercados (CNPJ, NOME_SUPERMERCADO, PROPRIETARIO) 
                    VALUES ('%s', '%s', '%s')
@@ -10,7 +10,7 @@ def incluir_supermercado(cnpj, nome_supermercado, proprietario): #FINALIZADO
     db.con.commit()
     
 #função para inserir registro no banco de dados
-def selecionar_supermercado(): #FINALIZADO - PEDRO
+def consultar_supermercado_db(): #FINALIZADO - PEDRO
     db.cur.execute("""
                    SELECT * FROM supermercados
                    """)
@@ -21,15 +21,17 @@ def selecionar_supermercado(): #FINALIZADO - PEDRO
     return rows
 
 #função para  atualizar 
-def atualizar_supermercado(cpf, nome, endereco, telefone): #INACABADO - JOÃO E JEAN
+def atualizar_supermercado_db(cpf, nome, endereco, telefone): #INACABADO - JOÃO E JEAN
     data = db.cur.execute("""
             UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
             """ % (cpf, nome, endereco, telefone)
     )
 
 #função para deletar
-def deletar_supermercado(cnpj): #FINALIZADO - ANA
-    data = db.cur.execute("""
-            UPDATE clientes SET cnpj='%s'
+def deletar_supermercado_db(cnpj): #FINALIZADO - ANA
+    db.cur.execute("""
+            DELETE from supermercados
+            WHERE cnpj = '%s'
             """ % (cnpj)
     )
+    db.con.commit()

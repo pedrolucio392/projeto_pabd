@@ -5,18 +5,13 @@ import page.select as select
 import page.update as update
 import page.delete as delete
 
+
 #criando a barra lateral do menu
 st.sidebar.title('Menu')
 
 # Barra lateral inicial
 opcoes_iniciais = ['Inserir', 'Consultar', 'Atualizar', 'Deletar']
 selectbox_inicial = st.sidebar.selectbox('O que deseja?', opcoes_iniciais)
-
-
-# selectbox_cliente = st.sidebar.selectbox('Clientes', ['Inserir cliente', 'Consultar clientes', 'Atualizar cliente', 'Deletar cliente'])
-# selectbox_produto = st.sidebar.selectbox('Produtos', ['Inserir produto', 'Consultar produtos', 'Atualizar produto', 'Deletar produto'])
-# selectbox_supermercado = st.sidebar.selectbox('Supermercados', ['Inserir supermercado', 'Consultar supermercados', 'Atualizar supermercado', 'Deletar supermercado'])
-# selectbox_venda = st.sidebar.selectbox('Vendas', ["Inserir venda", 'Consultar vendas', 'Atualizar venda', 'Deletar venda'])
 
 # INSERIR
 

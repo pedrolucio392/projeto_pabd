@@ -14,7 +14,7 @@ def consultar_clientes(): #FINALIZADA
     for coluna, campo in zip(colunas, campos):
         coluna.write(campo)
 
-    for item in cliente.selecionar_cliente():
+    for item in cliente.consultar_cliente_db():
         col1, col2, col3, col4 = st.columns((1, 2, 1, 2))
 
         col1.write(item[0])
@@ -24,7 +24,7 @@ def consultar_clientes(): #FINALIZADA
 
 def consultar_vendas(): #FINALIZADA
     st.title('Consultar Vendas')
-    rows = venda.selecionar_venda()
+    rows = venda.consultar_venda_db()
     
     colunas = st.columns((1, 1, 1, 1, 1))
     campos = ['ID', 'Data', 'ID Produto', 'CNPJ', 'CPF Cliente']
@@ -42,7 +42,7 @@ def consultar_vendas(): #FINALIZADA
             
 def consultar_supermercados(): #FINALIZADA
     st.title('Consultar Supermercados')
-    rows = supermercado.selecionar_supermercado()
+    rows = supermercado.consultar_supermercado_db()
     
     colunas = st.columns((1, 1, 1))
     campos = ['CNPJ', 'Nome', 'Proprietário']
@@ -58,7 +58,7 @@ def consultar_supermercados(): #FINALIZADA
 
 def consultar_produtos(): #FINALIZADA
     st.title('Consultar Produtos')
-    rows = produto.selecionar_produto()
+    rows = produto.consultar_produto_db()
     
     colunas = st.columns((1, 1, 1, 1))
     campos = ['ID', 'Valor', 'Nome', 'Categoria']
