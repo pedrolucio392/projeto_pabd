@@ -15,6 +15,7 @@ selectbox_inicial = st.sidebar.selectbox('O que deseja?', opcoes_iniciais)
 
 # INSERIR
 
+
 if selectbox_inicial == 'Inserir':
     
     opcoes_inserir = ['Inserir cliente', 'Inserir produto', 'Inserir supermercado', 'Inserir venda']
@@ -59,16 +60,13 @@ if selectbox_inicial == 'Atualizar':
     selectbox_atualizar = st.sidebar.selectbox('O que desaja atualizar?', opcoes_atualizar)
 
     if selectbox_atualizar == 'Atualizar cliente':
-        cpf_cliente = int(input('Digite seu cpf para atualizar os dados: '))
-        update.atualizar_cliente(cpf_cliente)
+        update.atualizar_cliente()
 
     if selectbox_atualizar == 'Atualizar produto':
-        id_produto= int(input('Digite o id do produto para atualizar os dados: '))
-        update.atualizar_produto(id_produto)
+        update.atualizar_produto()
 
     if selectbox_atualizar == 'Atualizar supermercado':
-        cnpj = int(input('Digite o CNPJ para atualizar os dados: '))
-        update.atualizar_supermercado(cnpj)
+        update.atualizar_supermercado()
 
     if selectbox_atualizar == 'Atualizar venda':
         update.atualizar_venda()

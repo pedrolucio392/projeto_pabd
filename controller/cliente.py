@@ -4,7 +4,7 @@ import services.database as db
 #função para inserir registro no banco de dados
 def inserir_cliente_db(cpf, nome, endereco, telefone): #FINALIZADO
     db.cur.execute("""
-                   INSERT into public.clientes(CPF, NOME, ENDERECO, TELEFONE)
+                   INSERT into clientes(CPF, NOME, ENDERECO, TELEFONE)
                    VALUES ('%s','%s','%s', '%s')
                    """ % (cpf, nome, endereco, telefone))
     db.con.commit()
@@ -21,11 +21,12 @@ def consultar_cliente_db(): # FINALIZADO - PEDRO
     return rows
 
 #função para  atualizar 
-def atualizar_cliente_db(cpf, nome, endereco, telefone): #INACABADO - JOÃO E JEAN
+def atualizar_cliente_db(cpf, novo_nome, novo_endereco, novo_telefone): #FINALIZADO - JOÃO E JEAN
     db.cur.execute("""
-            UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
-            """ % (cpf, nome, endereco, telefone)
-    )
+                    UPDATE clientes
+                    SET nome = %s, endereco = %s, telefone = %s 
+                    WHERE cpf = %s
+                    """, (novo_nome, novo_endereco, novo_telefone, cpf))
     db.con.commit()
     
 #função para deletar

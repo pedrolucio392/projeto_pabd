@@ -21,11 +21,13 @@ def consultar_produto_db(): #FINALIZADO - PEDRO
     return rows
 
 #função para  atualizar 
-def atualizar_produto_db(cpf, nome, endereco, telefone): #INACABADO - JOÃO E JEAN
-    data = db.cur.execute("""
-            UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
-            """ % (cpf, nome, endereco, telefone)
-    )
+def atualizar_produto_db(id_produto, novo_valor, novo_nome, nova_categoria): #FINALIZADO - JOÃO E JEAN
+    db.cur.execute("""
+                    UPDATE produtos
+                    SET valor = %s, nome = %s, categoria = %s 
+                    WHERE id_produto = %s
+                    """, (novo_valor, novo_nome, nova_categoria, id_produto))
+    db.con.commit()
 
 #função para deletar
 def deletar_produto_db(id_produto): #FINALIZADO - ANA

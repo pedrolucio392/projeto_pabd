@@ -21,11 +21,13 @@ def consultar_venda_db(): #FINALIZADO - PEDRO
     return rows
 
 #função para  atualizar 
-def atualizar_venda_db(cpf, nome, endereco, telefone): #INACABADO - JOÃO E JEAN
-    data = db.cur.execute("""
-            UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
-            """ % (cpf, nome, endereco, telefone)
-    )
+def atualizar_venda_db(id_venda, nova_data_venda, novo_id_produto, novo_cnpj, novo_cpf_cliente): #FINALIZADO - JOÃO E JEAN
+    db.cur.execute("""
+                    UPDATE vendas
+                    SET data_venda = %s, id_produto = %s, cnpj = %s, cpf_cliente = %s
+                    WHERE id_venda = %s
+                    """, (nova_data_venda, novo_id_produto, novo_cnpj, novo_cpf_cliente, id_venda))
+    db.con.commit()
 
 #função para deletar
 def deletar_venda_db(id_venda): #FINALIZADO - ANA

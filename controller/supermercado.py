@@ -21,11 +21,13 @@ def consultar_supermercado_db(): #FINALIZADO - PEDRO
     return rows
 
 #função para  atualizar 
-def atualizar_supermercado_db(cpf, nome, endereco, telefone): #INACABADO - JOÃO E JEAN
-    data = db.cur.execute("""
-            UPDATE clientes SET cpf='%s', nome='%s', endereco='%s', telefone='%s'
-            """ % (cpf, nome, endereco, telefone)
-    )
+def atualizar_supermercado_db(cnpj, novo_nome, novo_proprietario): #FINALIZADO - JOÃO E JEAN
+    db.cur.execute("""
+                    UPDATE supermercados
+                    SET nome_supermercado = %s, proprietario = %s 
+                    WHERE cnpj = %s
+                    """, (novo_nome, novo_proprietario, cnpj))
+    db.con.commit()
 
 #função para deletar
 def deletar_supermercado_db(cnpj): #FINALIZADO - ANA

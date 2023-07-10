@@ -1,54 +1,87 @@
 import streamlit as st
+import services.database as db
+
 import controller.cliente as cliente
 import controller.produto as produto
 import controller.supermercado as supermercado
+import controller.venda as venda
+
+from psycopg2.errors import UniqueViolation, ForeignKeyViolation
 
 # JOÃO E JEAN
 
-def atualizar_cliente(cpf_cliente): #INACABADO
+def atualizar_cliente(): #FINALIZADO
 
     st.title('Atualizar dados do cliente')
 
-    sql = f'UPDATE cliente SET nome = %s endereco = %s telefone = %s WHERE cpf = {cpf_cliente} '
-    with st.form(key='insert'):
-        input_nome = st.text_input(label='Insira o nome:')
-        input_endereco = st.text_input(label='Insira seu endereço')
-        input_telefone = st.number_input(label='Insira seu telefone:', format='%d', step=1)
+    with st.form(key='atualizar_cliente'):
+        input_cpf = st.number_input(label='Insira o seu cpf:', format='%d', step=1)
+        input_novo_nome = st.text_input(label='Insira o novo nome:')
+        input_novo_endereco = st.text_input(label='Insira o seu novo endereço')
+        input_novo_telefone = st.number_input(label='Insira o seu novo telefone:', format='%d', step=1)
 
         buttom_submit = st.form_submit_button('Enviar')
-        
         if buttom_submit:
-            cliente.atualizar_cliente(input_nome, input_endereco, input_telefone)
-            st.success('Dados do cliente atualizado com sucesso')
+            try:
+                cliente.atualizar_cliente_db(input_cpf, input_novo_nome, input_novo_endereco, input_novo_telefone)
+                st.success('Dados do cliente atualizados com sucesso')
+            except ForeignKeyViolation:
+                st.error('Algum dado inserido está incorreto. Verifique se os dados estão corretos.')
+                db.con.rollback()
 
-def atualizar_supermercado(cnpj): #INACABADA
+def atualizar_supermercado(): #FINALIZADO
     st.title('Atualizar dados do supermercado')
 
-    sql = f'UPDATE cliente SET nome_supermercado = %s proprietario = %s WHERE cnpj = {cnpj}'
-    with st.form(key='insert'):
-        input_nome_supermercado = st.text_input(label='Insira o nome do supermercado:')
-        input_proprietario = st.text_input(label='Insira o nome do proprietário: ')
+    with st.form(key='atualizar_supermercado'):
+        input_cnpj = st.number_input(label='Insira o seu cnpj:', format='%d', step=1)
+        input_novo_nome_supermercado = st.text_input(label='Insira o novo nome do supermercado:')
+        input_novo_proprietario = st.text_input(label='Insira o novo nome do proprietário: ')
 
-        buttom_submit = st.form_submit_button('Enviar')
-        
+        buttom_submit = st.form_submit_button('Atualizar')
         if buttom_submit:
-            supermercado.atualizar_supermercado(input_nome_supermercado, input_proprietario)
-            st.success('Dados do supermercado atualizado com sucesso')
+            try:
+                supermercado.atualizar_supermercado_db(input_cnpj, input_novo_nome_supermercado, input_novo_proprietario)
+                st.success('Dados do supermercado atualizados com sucesso')
+            except ForeignKeyViolation:
+                st.error('Algum dado inserido está incorreto. Verifique se os dados estão corretos.')
+                db.con.rollback()
 
-def atualizar_produto(id_produto): #INACABADA
+def atualizar_produto(): #FINALIZADO
     st.title('Atualizar dados do produto')
 
-    sql = f'UPDATE cliente SET valor = %s nome_produto = %s categoria = %s WHERE id_produto = {id_produto}'
     with st.form(key='insert'):
-        input_valor = st.number_input(label='Insira o valor do produto:', format='%d', step=1)
-        input_nome_produto = st.text_input(label='Insira o nome do produto:')
-        input_categoria = st.text_input(label='Insira o nome da categoria: ')
+        input_id_produto = st.number_input(label='Insira o ID do produto:', format='%d', step=1)
+        input_novo_valor = st.number_input(label='Insira o novo valor do produto:', format='%d', step=1)
+        input_novo_nome_produto = st.text_input(label='Insira o novo nome do produto:')
+        input_novo_categoria = st.text_input(label='Insira o novo nome da categoria: ')
 
         buttom_submit = st.form_submit_button('Enviar')
         
         if buttom_submit:
-            produto.atualizar_produto(input_valor, input_nome_produto, input_categoria)
-            st.success('Dados do produto atualizado com sucesso')
+            try:
+                produto.atualizar_produto_db(input_id_produto, input_novo_valor, input_novo_nome_produto, input_novo_categoria)
+                st.success('Dados do produto atualizados com sucesso')
+            except ForeignKeyViolation:
+                st.error('Algum dado inserido está incorreto. Verifique se os dados estão corretos.')
+                db.con.rollback()
 
-def atualizar_venda(): #INACABADA
-    pass
+def atualizar_venda(): #FINALIZADO
+    st.title('Atualizar dados da venda')
+
+    with st.form(key='atualizar_venda'):
+        input_id_venda = st.number_input(label='Insira o ID da venda:', format='%d', step=1)
+        input_nova_data_venda = st.date_input(label='Insira a nova data da venda:')
+        input_novo_id_produto = st.number_input(label='Insira o novo ID do produto:', format='%d', step=1)
+        input_novo_cnpj = st.number_input(label='Insira o novo CNPJ do supermercado', format='%d', step=1)
+        input_novo_cpf_cliente = st.number_input(label='Insira o novo CPF do cliente:', format='%d', step=1)
+
+        buttom_submit = st.form_submit_button('Enviar')
+        
+        if buttom_submit:
+            try:
+                nova_data_venda = input_nova_data_venda.strftime('%Y-%m-%d')
+                venda.atualizar_venda_db(input_id_venda, nova_data_venda, input_novo_id_produto, input_novo_cnpj, input_novo_cpf_cliente)
+                st.success('Dados da venda atualizados com sucesso')
+            except ForeignKeyViolation:
+                st.error('Algum dado inserido está incorreto. Verifique se os dados estão corretos.')
+                db.con.rollback()
